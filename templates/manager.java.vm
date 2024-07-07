@@ -1,0 +1,22 @@
+package ${package.Parent}.manager;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+import ${package.Parent}.dal.mapper.${entity}Mapper;
+
+import javax.annotation.Resource;
+
+/**
+ * $!{table.comment}服务管理
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Slf4j
+@Service
+public class ${entity}Manager {
+
+    @Resource
+    private ${entity}Mapper ${table.entityPath}Mapper;
+    
+}

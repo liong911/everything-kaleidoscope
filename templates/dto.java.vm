@@ -1,0 +1,27 @@
+package ${package.Parent}.facade.dto;
+
+import java.io.Serializable;
+
+import lombok.Data;
+import lombok.experimental.Accessors;
+
+/**
+ * $!{table.comment}DTO
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Data
+@Accessors(chain = true)
+public class ${entity}DTO implements Serializable {
+
+    private static final long serialVersionUID = ${randomSerialVersionUID}L;
+    
+#foreach($field in ${table.fields})
+    /**
+     * $!{field.comment}
+     */
+    private ${field.propertyType} ${field.propertyName};
+
+#end
+}

@@ -1,0 +1,11 @@
+package ${package.Parent}.facade.service;
+
+/**
+ * $!{table.comment}服务接口
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+public interface ${entity}Service {
+
+}

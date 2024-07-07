@@ -1,0 +1,45 @@
+package ${package.Parent}.dal.mapper;
+
+import java.util.List;
+
+import ${package.Parent}.dal.model.${entity};
+import ${package.Parent}.dal.model.${entity}Example;
+import org.apache.ibatis.annotations.Param;
+
+/**
+ * $!{table.comment}Mapper接口
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+public interface ${entity}Mapper {
+
+    long countByExample(${entity}Example example);
+
+    int deleteByExample(${entity}Example example);
+
+    int deleteByPrimaryKey(#foreach($field in ${table.fields})#if(${field.keyFlag})${field.propertyType} ${field.propertyName}#break#end#end);
+
+    int insert(${entity} row);
+
+    int insertSelective(${entity} row);
+
+    List<${entity}> selectByExample(${entity}Example example);
+
+    ${entity} selectByPrimaryKey(#foreach($field in ${table.fields})#if(${field.keyFlag})${field.propertyType} ${field.propertyName}#break#end#end);
+
+    int updateByExampleSelective(@Param("row") ${entity} row, @Param("example") ${entity}Example example);
+
+    int updateByExample(@Param("row") ${entity} row, @Param("example") ${entity}Example example);
+
+    int updateByPrimaryKeySelective(${entity} row);
+
+    int updateByPrimaryKey(${entity} row);
+
+    int batchUpdate(List<${entity}> list);
+
+    int batchUpdateSelective(List<${entity}> list);
+
+    int batchInsert(List<${entity}> list);
+
+}

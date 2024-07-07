@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="top.senseiliu.everything.kaleido.dal.mapper.generator.DbMetaInfoMapper">
+
+    <select id="selectSchemataNameList" resultType="String">
+        select `SCHEMA_NAME`
+        from information_schema.schemata 
+        where `SCHEMA_NAME` NOT IN ('information_schema', 'mysql', 'performance_schema', 'sys')
+    </select>
+
+    <select id="selectTableNameList" resultType="String">
+        select TABLE_NAME from information_schema.tables where TABLE_SCHEMA = #{schemaName}
+    </select>
+
+    <select id="selectCreateTableSql" resultType="Map">
+        show create table `${schemaName}`.`${tableName}`
+    </select>
+
+</mapper>

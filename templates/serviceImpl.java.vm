@@ -1,0 +1,22 @@
+package ${package.Parent}.service.impl;
+
+import lombok.extern.slf4j.Slf4j;
+import ${package.Parent}.manager.${entity}Manager;
+import ${package.Parent}.facade.service.${entity}Service;
+
+import javax.annotation.Resource;
+
+/**
+ * $!{table.comment}服务实现
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Slf4j
+@DubboService
+public class ${entity}ServiceImpl implements ${entity}Service {
+
+    @Resource
+    private ${entity}Manager ${table.entityPath}Manager;
+    
+}

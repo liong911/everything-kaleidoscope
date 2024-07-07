@@ -1,0 +1,62 @@
+server:
+  port: ${PORT:12319}
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: @artifactId@
+  profiles:
+    active: @profiles.active@
+
+  # 数据库配置
+  datasource:
+    dynamic:
+      primary: master
+      strict: false
+      datasource:
+        master:
+          type: com.zaxxer.hikari.HikariDataSource
+          driverClassName: org.h2.Driver
+          # 远程连接，jdbc:h2:tcp://localhost:11111/file://xx/h2/h2db;AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;MODE=MySQL;DATABASE_TO_LOWER=TRUE
+          url: jdbc:h2:file:${H2_PATH:./h2/h2db};AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;MODE=MySQL;DATABASE_TO_LOWER=TRUE
+          username: sa
+          password: ${H2_PASSWORD:123456}
+        information_schema:
+          type: com.zaxxer.hikari.HikariDataSource
+          driverClassName: com.mysql.jdbc.Driver
+          url: jdbc:mysql://${MYSQL_URL}/information_schema?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+          username: ${MYSQL_ACCOUNT}
+          password: ${MYSQL_PASSWORD}
+    # Hikari 连接池配置
+    hikari:
+      # 连接池名称
+      pool-name: MyHikariCP
+      # 最小空闲连接数量
+      minimum-idle: 1
+      # 连接池最大连接数，默认是10
+      maximum-pool-size: 5
+      # 空闲连接存活最大时间，默认600000（10分钟）
+      idle-timeout: 180000
+      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+      max-lifetime: 1800000
+      # 数据库连接超时时间,默认30秒，即30000
+      connection-timeout: 30000
+      # 此属性控制从池返回的连接的默认自动提交行为,默认值：true
+      auto-commit: true
+      connection-test-query: SELECT 1
+
+mybatis-plus:
+  mapperLocations: classpath:/mapper/**/*.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+code-generator:
+  url: jdbc:mysql://${MYSQL_URL}/%s?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+  name: ${MYSQL_ACCOUNT}
+  password: ${MYSQL_PASSWORD}
+  templatePath: ${TEMPLATE_PATH:./templates}
+
+h2-server:
+  port: ${H2_PORT:11111}
