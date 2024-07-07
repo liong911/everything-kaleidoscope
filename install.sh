@@ -5,6 +5,7 @@ echo "#####################################################################"
 echo "1.打包vue"
 
 cd ./kaleidoscope-ui
+npm install
 npm run build
 
 # 删除原静态资源目录
