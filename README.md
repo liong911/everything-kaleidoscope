@@ -10,11 +10,13 @@
 
 ![image.png](./.md/image-3.png)
 
+> 体验地址：http://kaleidoscope.nothing-plat.cn
+
 ## 1.2 功能
 
-1. 采用H2作为企业网址的数据存储，通过DBeaber、Navicat等管理工具对导航页进行更新。
-2. 规范企业代码生成。连接MySQL通过Mybatis-plus生成代码，通过编写适合的模板。
-3. 页面采用vue2，打包进SpringBoot服务启动。
+1. 网页导航采用H2作为企业网址的数据存储，导航支持配置网站的多个环境以及用户名、密码。可通过DBeaber、Navicat等管理工具对导航页进行更新。
+2. 规范企业代码生成。连接MySQL通过Mybatis-plus生成代码。采用Velocity引擎通过编写符合公司规范的代码生成模板。
+3. 一体式的服务，包括vue页面、SpringBoot服务和H2内嵌服务。页面采用vue2，打包进SpringBoot服务启动。
 
 # 2 安装
 
@@ -27,6 +29,7 @@ cd everything-kaleidoscope
 chmod +x install.sh
 ./install.sh
 ```
+
 生成release，如下
 ```txt
 release
@@ -117,6 +120,14 @@ services:
     stdin_open: true
     privileged: true
     # restart: always
+```
+
+## 3.4 公开镜像
+
+除了自动编译构建外，镜像已推送至腾讯云容器镜像服务，可直接拉取
+
+```bash
+docker pull ccr.ccs.tencentyun.com/everything/kaleidoscope
 ```
 
 # 4 导航数据维护
